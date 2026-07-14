@@ -7,9 +7,9 @@ import { Services } from "@/components/sections/services";
 import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Gallery } from "@/components/sections/gallery";
-import { Team } from "@/components/sections/team";
 import { Faq } from "@/components/sections/faq";
 import { FinalCta } from "@/components/sections/final-cta";
+import { ContactForm } from "@/components/sections/contact-form";
 import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
@@ -25,9 +25,9 @@ export default function Home() {
         <WhyChooseUs />
         <Testimonials />
         <Gallery />
-        <Team />
         <Faq />
         <FinalCta />
+        <ContactForm />
       </main>
       <Footer />
     </>

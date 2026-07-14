@@ -4,7 +4,7 @@ import Image from "next/image";
 import { services } from "@/lib/data";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
-const serviceImages = ["/images/gallery-1.jpg", "/images/gallery-4.jpg", "/images/gallery-5.jpg"];
+const serviceImages = ["/images/section-1.jpg", "/images/section-7.jpg", "/images/section-3.jpg"];
 
 export function Services() {
   return (
@@ -15,18 +15,18 @@ export function Services() {
             Our Services
           </p>
           <h2 className="head-split mt-4 font-display text-4xl uppercase leading-tight text-navy sm:text-5xl">
-            Solutions For Every Plumbing Need
+            Solutions For Every Home Repair Need
           </h2>
           <p className="mt-4 text-base text-slate-600">
-            From minor repairs to major installations, we provide dependable plumbing
+            From minor repairs to larger improvements, we provide dependable handyman
             solutions backed by expert workmanship and years of experience.
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.08}>
+        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.2}>
           {services.map(({ icon: Icon, title, description }, index) => (
             <RevealItem key={title}>
-              <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <article className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={serviceImages[index]}

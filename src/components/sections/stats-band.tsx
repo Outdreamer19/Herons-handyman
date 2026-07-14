@@ -6,7 +6,7 @@ export function StatsBand() {
     <section className="bg-white pb-20">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-6 md:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center">
+          <div key={stat.label} className="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center">
             <p className="font-display text-4xl text-navy">
               <CountUp value={stat.value} suffix={stat.suffix} />
             </p>

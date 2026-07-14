@@ -13,16 +13,16 @@ export function WhyChooseUs() {
             Why Choose Us
           </p>
           <h2 className="head-split mt-4 font-display text-4xl uppercase leading-tight text-navy sm:text-5xl">
-            Reliable Plumbing Solutions You Can Trust
+            Reliable Handyman Solutions You Can Trust
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.08}>
+        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.2}>
           {whyRows.map((row) => {
             const Icon = row.icon;
             return (
               <RevealItem key={row.title}>
-                <article className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+                <article className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
                   <div className="relative aspect-[4/3]">
                     <Image src={row.image} alt={row.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
                   </div>

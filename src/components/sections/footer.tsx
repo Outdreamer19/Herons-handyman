@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Droplets, Phone, Mail, MapPin } from "lucide-react";
-import { navLinks } from "@/lib/data";
+import { Bird, Phone, Mail, MapPin, Clock3 } from "lucide-react";
+import { navLinks, site } from "@/lib/data";
 import { FacebookIcon, InstagramIcon, XIcon } from "@/components/social-icons";
 
 export function Footer() {
@@ -9,14 +9,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-12 sm:grid-cols-2 md:grid-cols-4">
           <div>
-            <Link href="#" className="flex items-center gap-2 text-white">
+            <Link href="/" className="flex items-center gap-2 text-white">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Droplets className="h-5 w-5" />
+                <Bird className="h-5 w-5" />
               </span>
-              <span className="font-display text-lg tracking-wide">PLUMFIX</span>
+              <span className="font-display text-lg tracking-wide">{site.shortName}</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm">
-              Expert plumbing services backed by quality work, honest pricing, and dependable customer care.
+              Trusted local handyman services backed by quality work, honest pricing, and dependable customer care.
             </p>
           </div>
 
@@ -25,13 +25,18 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="transition-colors hover:text-gold">
+                  <Link href={link.href} className="transition-colors hover:text-gold">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li>
-                <a href="#contact" className="transition-colors hover:text-gold">
+                <Link href="/quote" className="transition-colors hover:text-gold">
+                  Get a Quote
+                </Link>
+              </li>
+              <li>
+                <a href="/#contact" className="transition-colors hover:text-gold">
                   Contact
                 </a>
               </li>
@@ -42,14 +47,17 @@ export function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white">Contact</h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-gold" /> +1 (647) 555-9218
+                <Phone className="h-4 w-4 text-gold" /> {site.phone}
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-gold" /> support@plumfix.com
+                <Mail className="h-4 w-4 text-gold" /> {site.email}
+              </li>
+              <li className="flex items-center gap-2">
+                <Clock3 className="h-4 w-4 text-gold" /> {site.hours}
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                875 Park Avenue, New York, NY 10022, USA
+                {site.location}
               </li>
             </ul>
           </div>
@@ -82,7 +90,9 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="py-8 text-center text-xs text-white/50">© {new Date().getFullYear()} PlumFix. All rights reserved.</p>
+        <p className="py-8 text-center text-xs text-white/50">
+          © {new Date().getFullYear()} {site.name}. All rights reserved.
+        </p>
       </div>
     </footer>
   );

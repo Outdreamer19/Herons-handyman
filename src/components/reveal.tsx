@@ -11,6 +11,7 @@ interface RevealProps {
   delay?: number;
   y?: number;
   once?: boolean;
+  duration?: number;
 }
 
 const variants: Variants = {
@@ -54,13 +55,13 @@ export function RevealGroup({ children, className, stagger = 0.1, once = true }:
   );
 }
 
-export function RevealItem({ children, className, y = 24 }: RevealProps) {
+export function RevealItem({ children, className, y = 24, duration = 0.6 }: RevealProps) {
   return (
     <motion.div
       className={className}
       variants={{
         hidden: { opacity: 0, y },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+        visible: { opacity: 1, y: 0, transition: { duration, ease: EASE } },
       }}
     >
       {children}

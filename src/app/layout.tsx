@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Herons Handyman | Trusted Local Handyman Services",
+  title: "Herons Handy Service | Trusted Local Handyman",
   description:
-    "Repairs, carpentry, painting, small electrical & plumbing, assembly, and renovations. Herons Handyman — reliable local craftsmanship, done right the first time.",
+    "Repairs, carpentry, painting, small electrical and plumbing, assembly, and home improvements. Herons Handy Service — reliable local craftsmanship, Monday to Friday.",
 };
 
 export default function RootLayout({

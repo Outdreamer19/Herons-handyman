@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-navy: #0f172a;
-  --color-blue: #1d3557;
-  --color-sky: #f1f5f9;
-  --color-mint: #f8fafc;
+  --color-navy: #03045e;
+  --color-blue: #0077b6;
+  --color-sky: #90e0ef;
+  --color-mint: #e6fdfd;
   --color-gold: #faa307;
 
   --color-background: var(--background);
@@ -53,23 +53,23 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #03045e;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #03045e;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0f172a;
+  --popover-foreground: #03045e;
+  --primary: #03045e;
   --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --secondary-foreground: #0f172a;
-  --muted: #f8fafc;
+  --secondary: #e6fdfd;
+  --secondary-foreground: #03045e;
+  --muted: #e6fdfd;
   --muted-foreground: #475569;
   --accent: #faa307;
-  --accent-foreground: #0f172a;
+  --accent-foreground: #03045e;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #1d3557;
+  --ring: #0077b6;
   --radius: 1rem;
 }
 
@@ -92,19 +92,22 @@
 }
 
 .hero h1,
-.head-split,
-.load,
-.nav-load {
+.head-split {
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero h1,
-  .load,
-  .head-split,
-  .nav-load {
+  .head-split {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
   }
+}
+
+.hero-watermark {
+  color: rgba(255, 255, 255, 0.055);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.055);
+  mask-image: linear-gradient(to bottom, black 0%, black 28%, transparent 88%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 28%, transparent 88%);
 }

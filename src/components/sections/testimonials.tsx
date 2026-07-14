@@ -14,10 +14,10 @@ export function Testimonials() {
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.08}>
+        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.2}>
           {testimonials.map((t) => (
             <RevealItem key={t.name}>
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
                 <Quote className="h-6 w-6 text-gold" />
                 <p className="mt-4 text-sm leading-relaxed text-slate-700">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-5 flex gap-1 text-gold">
