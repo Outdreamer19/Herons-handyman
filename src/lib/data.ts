@@ -1,20 +1,67 @@
 import {
-  Droplets,
-  Search,
+  Hammer,
+  Paintbrush,
   Wrench,
+  Boxes,
+  Zap,
+  Building2,
   ShieldCheck,
   Clock3,
   BadgeCheck,
   type LucideIcon,
 } from "lucide-react";
 
+export const site = {
+  name: "Herons Handy Service",
+  shortName: "HERONS",
+  tagline: "Trusted Local Handyman",
+  phone: "07943 281881",
+  phoneHref: "tel:+447943281881",
+  email: "hello@heronshandyservice.com",
+  hours: "Monday – Friday, 9:00 – 17:00",
+  hoursShort: "Mon – Fri, 9:00 – 17:00",
+  location: "Serving homes across the local area",
+  owner: {
+    name: "Marcus Reyes",
+    title: "Owner & Lead Handyman",
+    image: "/images/about-owner.jpg",
+  },
+};
+
 export const navLinks: { label: string; href: string }[] = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Team", href: "#team" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "FAQ", href: "/#faq" },
 ];
+
+export const aboutValues = [
+  {
+    title: "Honest Work",
+    description:
+      "We explain the job clearly, quote upfront, and only recommend what your home actually needs.",
+  },
+  {
+    title: "Careful Craftsmanship",
+    description:
+      "From small fixes to larger improvements, every job is finished properly and left tidy.",
+  },
+  {
+    title: "Reliable Service",
+    description:
+      "We show up when we say we will, communicate clearly, and treat every home with respect.",
+  },
+] as const;
+
+export const quoteServiceOptions = [
+  "General Repairs",
+  "Carpentry",
+  "Painting & Decorating",
+  "Electrical & Plumbing",
+  "Assembly",
+  "Renovations",
+  "Other",
+] as const;
 
 export interface Service {
   icon: LucideIcon;
@@ -24,19 +71,22 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    icon: Search,
-    title: "Leak Detection",
-    description: "Identify hidden leaks early and prevent costly water damage throughout your home.",
+    icon: Hammer,
+    title: "General Repairs",
+    description:
+      "Fast fixes for leaks, squeaks, cracks, and everything in between — handled properly the first time.",
   },
   {
-    icon: Droplets,
-    title: "Drain Cleaning",
-    description: "Clear stubborn clogs and restore smooth drainage with professional cleaning solutions.",
+    icon: Boxes,
+    title: "Carpentry",
+    description:
+      "Custom shelving, trim, doors, and framing built to last with clean, precise workmanship.",
   },
   {
-    icon: Wrench,
-    title: "Water Heaters",
-    description: "Installation, repair, and maintenance services for efficient hot water performance.",
+    icon: Paintbrush,
+    title: "Painting & Decorating",
+    description:
+      "Interior and exterior painting with neat edges, even coverage, and a tidy finish every time.",
   },
 ];
 
@@ -47,10 +97,10 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: 1200, suffix: "+", label: "Happy Customers" },
-  { value: 24, suffix: "/7", label: "Emergency Service" },
-  { value: 18, suffix: "+", label: "Years Experience" },
+  { value: 100, suffix: "+", label: "Jobs Completed" },
+  { value: 12, suffix: "+", label: "Years Experience" },
   { value: 98, suffix: "%", label: "Customer Satisfaction" },
+  { value: 5, suffix: "-Day", label: "Mon – Fri Service" },
 ];
 
 export interface WhyRow {
@@ -63,24 +113,27 @@ export interface WhyRow {
 
 export const whyRows: WhyRow[] = [
   {
-    title: "Licensed & Certified Experts",
-    description: "Skilled professionals delivering safe and dependable plumbing solutions.",
-    image: "/images/why-1.jpg",
-    alt: "Licensed professional working on plumbing service",
+    title: "Licensed & Insured",
+    description:
+      "Every job is carried out by experienced professionals who take safety and accountability seriously.",
+    image: "/images/section-4.jpg",
+    alt: "Handyman carefully drilling during a home repair",
     icon: ShieldCheck,
   },
   {
-    title: "Rapid Response Team",
-    description: "Quick arrival times and efficient service when you need it most.",
-    image: "/images/why-2.jpg",
-    alt: "Technician arriving quickly for service call",
+    title: "Reliable Scheduling",
+    description:
+      "Clear communication, on-time arrivals, and dependable service Monday through Friday, 9:00 to 17:00.",
+    image: "/images/section-5.jpg",
+    alt: "Craftsman focused on quality finishing work",
     icon: Clock3,
   },
   {
-    title: "Guaranteed Workmanship",
-    description: "Quality repairs and installations backed by trusted service guarantees.",
-    image: "/images/why-3.jpg",
-    alt: "Close-up of high-quality finishing detail",
+    title: "Quality You Can Trust",
+    description:
+      "From small fixes to larger improvements, we focus on durable results and workmanship that holds up.",
+    image: "/images/section-6.jpg",
+    alt: "Close-up of precise power tool workmanship",
     icon: BadgeCheck,
   },
 ];
@@ -99,7 +152,7 @@ export const testimonials: Testimonial[] = [
     location: "Homeowner",
     rating: 5,
     quote:
-      "PlumFix responded quickly and solved our plumbing issue professionally. The technician explained everything clearly and left everything spotless.",
+      "Herons Handy Service responded quickly and fixed our issue professionally. Everything was explained clearly and left spotless.",
     avatar: "/images/avatar-1.jpg",
   },
   {
@@ -107,7 +160,7 @@ export const testimonials: Testimonial[] = [
     location: "Homeowner",
     rating: 5,
     quote:
-      "Excellent service from start to finish. The team arrived on time, communicated clearly, and completed the work with exceptional attention.",
+      "Excellent service from start to finish. They arrived on time, communicated well, and completed the work with great attention to detail.",
     avatar: "/images/avatar-2.jpg",
   },
   {
@@ -115,7 +168,7 @@ export const testimonials: Testimonial[] = [
     location: "Homeowner",
     rating: 5,
     quote:
-      "Professional, friendly, and highly skilled technicians. Transparent pricing and quality workmanship all the way through.",
+      "Professional, friendly, and skilled. Transparent pricing and quality workmanship throughout — we would happily recommend them.",
     avatar: "/images/avatar-3.jpg",
   },
 ];
@@ -126,11 +179,11 @@ export interface GalleryItem {
 }
 
 export const galleryItems: GalleryItem[] = [
-  { image: "/images/gallery-1.jpg", alt: "Plumbing project in progress" },
-  { image: "/images/gallery-2.jpg", alt: "Completed modern bathroom installation" },
-  { image: "/images/gallery-3.jpg", alt: "Pipe and fixture installation work" },
-  { image: "/images/gallery-4.jpg", alt: "Technician performing repair work" },
-  { image: "/images/gallery-5.jpg", alt: "Clean finished plumbing setup" },
+  { image: "/images/section-9.jpg", alt: "Angle grinder cutting metal with sparks" },
+  { image: "/images/section-8.jpg", alt: "Exterior painting and trim work on a home" },
+  { image: "/images/section-12.jpg", alt: "Technician servicing an overhead light fixture" },
+  { image: "/images/section-10.jpg", alt: "Ceiling electrical work during a renovation" },
+  { image: "/images/section-11.jpg", alt: "Maintenance work from a ladder on site" },
 ];
 
 export interface TeamMember {
@@ -140,12 +193,10 @@ export interface TeamMember {
 }
 
 export const team: TeamMember[] = [
-  { name: "David Carter", role: "Lead Plumbing Technician", image: "/images/team-1.jpg" },
-  { name: "Sophia Mitchell", role: "Senior Plumbing Specialist", image: "/images/team-2.jpg" },
-  { name: "Michael Rodriguez", role: "Operations Manager", image: "/images/team-3.jpg" },
-  { name: "Emma Wilson", role: "Customer Service Manager", image: "/images/team-4.jpg" },
-  { name: "James Anderson", role: "Master Plumber", image: "/images/team-1.jpg" },
-  { name: "Olivia Parker", role: "Project Coordinator", image: "/images/team-2.jpg" },
+  { name: "Marcus Reyes", role: "Lead Handyman", image: "/images/team-1.jpg" },
+  { name: "Jasmine Carter", role: "Project Coordinator", image: "/images/team-2.jpg" },
+  { name: "Daniel Cole", role: "Carpentry Specialist", image: "/images/team-3.jpg" },
+  { name: "Priya Nair", role: "Customer Care Lead", image: "/images/team-4.jpg" },
 ];
 
 export interface FaqItem {
@@ -155,28 +206,46 @@ export interface FaqItem {
 
 export const faqs: FaqItem[] = [
   {
-    question: "What plumbing services do you offer?",
+    question: "What handyman services do you offer?",
     answer:
-      "We handle leak detection, drain cleaning, water heater installation and repairs, fixture replacement, and routine maintenance for residential properties.",
+      "We handle general repairs, carpentry, painting, small electrical and plumbing jobs, furniture assembly, and light home improvements.",
   },
   {
-    question: "Do you offer emergency plumbing services?",
+    question: "What are your operating hours?",
     answer:
-      "Yes. Our emergency response team is available 24/7 for urgent plumbing issues like burst pipes, major leaks, and blocked drains.",
+      "We are available Monday to Friday, 9:00 to 17:00. Contact us to schedule a visit within our working hours.",
   },
   {
-    question: "How quickly can a plumber arrive?",
+    question: "How quickly can you attend a job?",
     answer:
-      "For most service areas, we can typically dispatch a technician the same day. Emergency requests are prioritized for the fastest response.",
+      "Most standard bookings are scheduled within a few working days, depending on availability. Get in touch and we will confirm the earliest slot.",
   },
   {
-    question: "Are your plumbers licensed and insured?",
+    question: "Are you insured?",
     answer:
-      "Absolutely. Every member of our team is licensed, certified, and fully insured for your peace of mind.",
+      "Yes. We take safety and professionalism seriously, and appropriate insurance is in place for the work we carry out.",
   },
   {
     question: "Do you provide upfront pricing?",
     answer:
-      "Yes, we provide clear, transparent quotes before work begins so there are no hidden fees or unexpected costs.",
+      "Yes. We provide clear quotes before work begins so there are no hidden fees or unexpected costs.",
+  },
+];
+
+export const additionalServices: Service[] = [
+  {
+    icon: Zap,
+    title: "Electrical & Plumbing",
+    description: "Small jobs done safely — fixtures, outlets, taps, and toilets.",
+  },
+  {
+    icon: Wrench,
+    title: "Assembly",
+    description: "Furniture, shelving units, and flat-pack builds, hassle-free.",
+  },
+  {
+    icon: Building2,
+    title: "Renovations",
+    description: "Kitchen and bathroom refreshes from concept to finished job.",
   },
 ];

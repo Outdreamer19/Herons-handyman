@@ -10,6 +10,15 @@ type CharRevealOptions = {
   scrollTrigger?: ScrollTrigger.Vars;
 };
 
+export function revealAllAnimatedElements() {
+  gsap.set(".hero h1, .head-split, .load, .nav-load", {
+    opacity: 1,
+    y: 0,
+    filter: "none",
+    clearProps: "transform,filter",
+  });
+}
+
 export function createCharReveal(
   element: Element,
   { stagger = 0.035, delay = 0.2, scrollTrigger }: CharRevealOptions = {},
@@ -21,12 +30,13 @@ export function createCharReveal(
       gsap.set(element, { opacity: 1 });
       return gsap.from(self.chars, {
         opacity: 0,
-        y: 10,
+        y: 14,
         filter: "blur(8px)",
-        duration: 0.5,
+        duration: 0.75,
         ease: "power2.out",
         stagger,
         delay,
+        immediateRender: !scrollTrigger,
         scrollTrigger,
       });
     },
@@ -35,48 +45,60 @@ export function createCharReveal(
 
 export function initHomeAnimations() {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (prefersReducedMotion) return () => {};
+  if (prefersReducedMotion) {
+    revealAllAnimatedElements();
+    return () => {};
+  }
 
   const splits: SplitText[] = [];
 
-  const titleEl = document.querySelector(".hero h1");
-  if (titleEl) {
-    splits.push(
-      createCharReveal(titleEl, {
-        stagger: 0.035,
-        delay: 0.2,
-      }),
+  try {
+    gsap.fromTo(
+      ".nav-load",
+      { opacity: 0, y: -18 },
+      { opacity: 1, y: 0, duration: 1.2, delay: 0.35, ease: "power2.out" },
     );
+
+    gsap.fromTo(
+      ".hero .load",
+      { opacity: 0, y: 42 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power2.out",
+        delay: 0.95,
+        stagger: 0.22,
+      },
+    );
+
+    const titleEl = document.querySelector(".hero h1");
+    if (titleEl) {
+      splits.push(
+        createCharReveal(titleEl, {
+          stagger: 0.05,
+          delay: 0.35,
+        }),
+      );
+    }
+
+    document.querySelectorAll(".head-split").forEach((heading) => {
+      splits.push(
+        createCharReveal(heading, {
+          stagger: 0.04,
+          delay: 0.1,
+          scrollTrigger: {
+            trigger: heading,
+            start: "top 85%",
+            once: true,
+          },
+        }),
+      );
+    });
+  } catch (error) {
+    console.error("GSAP animation init failed:", error);
+    revealAllAnimatedElements();
   }
-
-  gsap.from(".nav-load", {
-    opacity: 0,
-    y: -14,
-    duration: 0.9,
-    delay: 0.2,
-  });
-
-  gsap.from(".hero .load", {
-    opacity: 0,
-    y: 34,
-    duration: 0.6,
-    ease: "power2.out",
-    delay: 0.55,
-    stagger: 0.13,
-  });
-
-  document.querySelectorAll(".head-split").forEach((heading) => {
-    splits.push(
-      createCharReveal(heading, {
-        stagger: 0.025,
-        scrollTrigger: {
-          trigger: heading,
-          start: "top 85%",
-          once: true,
-        },
-      }),
-    );
-  });
 
   return () => {
     splits.forEach((split) => split.kill());
