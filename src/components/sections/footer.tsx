@@ -92,6 +92,10 @@ export function Footer() {
 
         <p className="py-8 text-center text-xs text-white/50">
           © {new Date().getFullYear()} {site.name}. All rights reserved.
+          {" · "}
+          <a href="https://quantaradigital.co.uk" className="transition-colors hover:text-gold">
+            Website by Quantara Digital
+          </a>
         </p>
       </div>
     </footer>
