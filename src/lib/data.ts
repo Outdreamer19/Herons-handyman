@@ -22,8 +22,8 @@ export const site = {
   hoursShort: "Mon – Fri, 9:00 – 17:00",
   location: "Serving homes across the local area",
   owner: {
-    name: "Marcus Reyes",
-    title: "Owner & Lead Handyman",
+    name: "Jhal Heron",
+    title: "Owner",
     image: "/images/about-owner.jpg",
   },
 };

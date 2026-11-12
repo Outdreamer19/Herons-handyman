@@ -6,10 +6,39 @@ import { quoteServiceOptions, site } from "@/lib/data";
 
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setError(null);
+
+    const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        return;
+      }
+
+      const body = (await res.json().catch(() => ({}))) as { error?: string };
+      setError(
+        res.status === 422 && body.error
+          ? body.error
+          : `Sorry, your request didn't send. Please call us on ${site.phone}.`,
+      );
+    } catch {
+      setError(`Sorry, your request didn't send. Please call us on ${site.phone}.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -38,8 +67,17 @@ export function QuoteForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      className="relative rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
     >
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block text-sm font-medium text-navy">
           Full name
@@ -116,11 +154,18 @@ export function QuoteForm() {
         />
       </label>
 
+      {error ? (
+        <p role="alert" className="mt-5 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </p>
+      ) : null}
+
       <button
         type="submit"
-        className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-navy transition-colors hover:bg-[#f8b63a] sm:w-auto"
+        disabled={sending}
+        className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gold disabled:cursor-wait disabled:opacity-70 px-6 py-3.5 text-sm font-semibold text-navy transition-colors hover:bg-[#f8b63a] sm:w-auto"
       >
-        Request Quote
+        {sending ? "Sending..." : "Request Quote"}
       </button>
     </form>
   );
